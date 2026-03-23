@@ -9,52 +9,59 @@
 </head>
 
 <body>
-  <header>
-<h1>AI MzansiVerse by PruDev</h1>
-</header>
 
-<main>
-  <form>
-    <label for="theme">Choose a theme for your poem:</label>
-    <select id="theme" name="theme">
-      <option value="nature">Nature</option>
-      <option value="love">Love</option>
-      <option value="heritage">Heritage</option>
-      <option value="struggle">Struggle</option>
-      <option value="celebration">Celebration</option>
-    </select>
+  <div class="container">
 
-    <button type="submit">Generate Poem</button>
+    <header class="header">
+      <h1>🇿🇦 AI MzansiVerse by PruDev</h1>
+      <p class="subtitle">Your AI Powered South African Poem Generator</p>
+    </header>
 
-    <div id="poem-container">
-      <!-- Generated poem will be displayed here -->
-    </div>
-  </form>
-</main>
-<footer>
-    <p>Your AI Powered South African Poem Generator 🇿🇦</p>
+    <main>
+      <form class="poem-form">
 
-    <p>
-      This AI Project was created by
-      <a href="https://github.com/prudev-coding/mzansiverse-prudev" target="_blank" style="color: #90caf9;">
-        Prudence Busi Masango
-      </a>.
-    </p>
-    <p>
-      Mzansi Poem Generator generates poems based on South African culture and themes using natural language processing.
-    </p>
-    <p>
-      It is
-      <a href="https://github.com/prudev-coding/mzansi-poem-generator" target="_blank" style="color: #90caf9;">
-        open-sourced on GitHub
-      </a>
-      and hosted on
-      <a href="https://mzansiverse-prudev.netlify.app/" target="_blank" style="color: #90caf9;">
-        Netlify
-      </a>.
-    </p>
-    <p>&copy; 2026 Mzansi Poem Generator. All rights reserved.</p>
-  </footer>
+        <label for="theme">Choose a theme for your poem:</label>
+        <select id="theme" name="theme">
+          <option value="nature">🌿 Nature</option>
+          <option value="love">❤️ Love</option>
+          <option value="heritage">🏺 Heritage</option>
+          <option value="struggle">✊ Struggle</option>
+          <option value="celebration">🎉 Celebration</option>
+        </select>
+
+        <button type="submit" class="generate-poem-btn">Generate Poem ✨</button>
+
+        <div id="poem-container">
+          </div>
+
+      </form>
+    </main>
+
+    <footer class="footer">
+      <p>
+        This AI Project was created by
+        <a href="https://github.com/prudev-coding/mzansiverse-prudev" target="_blank">
+          Prudence Busi Masango
+        </a>.
+      </p>
+      <p>
+        Mzansi Poem Generator generates poems based on South African culture
+        and themes using natural language processing.
+      </p>
+      <p>
+        It is
+        <a href="https://github.com/prudev-coding/mzansi-poem-generator" target="_blank">
+          open-sourced on GitHub
+        </a>
+        and hosted on
+        <a href="https://mzansiverse-prudev.netlify.app/" target="_blank">
+          Netlify
+        </a>.
+      </p>
+      <p>&copy; 2026 Mzansi Poem Generator. All rights reserved.</p>
+    </footer>
+
+  </div>
 
   <script src="src/index.js"></script>
 </body>
