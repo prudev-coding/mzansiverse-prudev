@@ -160,7 +160,7 @@ Words too small for what I feel,
 Like the warm sun breaking through —
 You make everything so real.
 
-Your smile is the sunrise over Soweto,
+Your smile is the sunrise over Mpumalanga's hills,
 Your laugh is the river after rain,
 With you every high and every low —
 Is a beautiful refrain. ❤️`
