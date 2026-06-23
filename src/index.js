@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const poemFormElement = document.querySelector('.poem-form');
   const poemContainer = document.getElementById('poem-container');
+  const copyBtnGlobal = document.getElementById('copyBtn');
 
   const poems = {
     nature: [
@@ -299,6 +300,7 @@ This is love that hits the heart. 🎉`
     const poemBox = document.getElementById('poemBox');
     const poemTitle = document.getElementById('poemTitle');
     const poemContent = document.getElementById('poemContent');
+    const copyBtn = document.getElementById('copyBtn') || copyBtnGlobal;
 
     if (!poems[selectedTheme]) {
       poemContent.innerText = 'No poems found for this theme. Please try another! 🌿';
@@ -319,17 +321,47 @@ This is love that hits the heart. 🎉`
       poemTitle.textContent = '📜 ' + selected.title;
       poemContent.innerHTML = '';
 
+        // Type the poem once without deleting it so users can copy or delete manually.
+        // Returns a Promise that resolves when typing is finished.
+        function typeOnce(element, text, delay = 50) {
+          return new Promise((resolve) => {
+            element.innerHTML = '';
+            const textSpan = document.createElement('span');
+            textSpan.className = 'typed-text';
+            const cursorSpan = document.createElement('span');
+            cursorSpan.className = 'typing-cursor';
+            cursorSpan.textContent = '|';
+            element.appendChild(textSpan);
+            element.appendChild(cursorSpan);
+
+            let i = 0;
+            const timer = setInterval(() => {
+              i++;
+              textSpan.textContent = text.slice(0, i);
+              if (i >= text.length) {
+                clearInterval(timer);
+                // remove cursor when finished so it doesn't continue blinking or reverse
+                cursorSpan.remove();
+                resolve();
+              }
+            }, delay);
+          });
+        }
+
+      if (copyBtn) {
+        copyBtn.hidden = true;
+        copyBtn.disabled = true;
+      }
+
       if (typeof Typewriter !== 'undefined') {
-        new Typewriter(poemContent, {
-          strings: [selected.poem],
-          autoStart: true,
-          delay: 50,
-          cursor: '|',
-          loop: false
+        // Prefer a simple one-time typing effect instead of the library's looping/delete behavior.
+        typeOnce(poemContent, selected.poem, 30).then(() => {
+          if (copyBtn) { copyBtn.hidden = false; copyBtn.disabled = false; }
         });
       } else {
         poemContent.innerText = selected.poem;
         console.warn('Typewriter.js not loaded — showing poem as plain text.');
+        if (copyBtn) { copyBtn.hidden = false; copyBtn.disabled = false; }
       }
 
       btn.disabled = false;
@@ -342,6 +374,42 @@ This is love that hits the heart. 🎉`
     poemFormElement.addEventListener('submit', generatePoem);
   } else {
     console.error('Form element not found! Make sure your form has class="poem-form"');
+  }
+
+  // Clipboard handler for the Copy button (added separately so listener isn't reattached repeatedly)
+  const copyBtn = document.getElementById('copyBtn');
+  if (copyBtn) {
+    copyBtn.addEventListener('click', async () => {
+      const poemTitle = document.getElementById('poemTitle');
+      const poemContent = document.getElementById('poemContent');
+      let text = '';
+      if (poemTitle && poemTitle.textContent) text += poemTitle.textContent + '\n\n';
+      if (poemContent) {
+        const typed = poemContent.querySelector('.typed-text');
+        text += typed ? typed.textContent : poemContent.innerText;
+      }
+      try {
+        await navigator.clipboard.writeText(text);
+        const orig = copyBtn.textContent;
+        copyBtn.textContent = 'Copied! ✅';
+        setTimeout(() => copyBtn.textContent = orig, 1400);
+      } catch (err) {
+        console.error('Clipboard write failed', err);
+        // Fallback: select and execCommand
+        if (poemContent) {
+          const range = document.createRange();
+          range.selectNodeContents(poemContent);
+          const sel = window.getSelection();
+          sel.removeAllRanges();
+          sel.addRange(range);
+          try { document.execCommand('copy'); } catch (e) { console.warn('execCommand copy failed', e); }
+          sel.removeAllRanges();
+          const orig = copyBtn.textContent;
+          copyBtn.textContent = 'Copied! ✅';
+          setTimeout(() => copyBtn.textContent = orig, 1400);
+        }
+      }
+    });
   }
 
 });
