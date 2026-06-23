@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
+  <link rel="stylesheet" href="src/styles.css">
+  <title>MzansiVerse by PruDev</title>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <header class="header">
+      <h1>🇿🇦 AI MzansiVerse by PruDev</h1>
+      <p class="subtitle">Your AI Powered South African Poem Generator</p>
+    </header>
+
+    <main>
+      <form class="poem-form">
+
+        <label for="themeSelect">Choose a theme for your poem:</label>
+        <select id="themeSelect">
+          <option value="nature">🌿 Nature</option>
+          <option value="ubuntu">🤝 Ubuntu</option>
+          <option value="freedom">✊ Freedom</option>
+          <option value="heritage">🏺 Heritage</option>
+          <option value="township">🏘️ Township Life</option>
+          <option value="love">❤️ Love</option>
+          <option value="ancestors">🕯️ Ancestors</option>
+          <option value="youth">🌟 Youth & Future</option>
+          <option value="struggle">💪 Struggle</option>
+          <option value="celebration">🎉 Celebration</option>
+        </select>
+
+        <button type="submit" id="generateBtn">Generate Poem ✨</button>
+        <button type="button" id="copyBtn" class="copy-btn" hidden>Copy Poem 📋</button>
+
+        <div class="poem-box" id="poemBox">
+          <div class="poem-title" id="poemTitle"></div>
+          <div id="poemContent"></div>
+        </div>
+
+      </form>
+    </main>
+
+    <footer class="footer">
+      <p>
+        This AI Project was created by
+        <a href="https://github.com/prudev-coding/mzansiverse-prudev" target="_blank">
+          Prudence Busi Masango
+        </a>.
+      </p>
+      <p>
+        Mzansi Poem Generator generates poems based on South African culture
+        and themes using natural language processing.
+      </p>
+      <p>
+        It is
+        <a href="https://github.com/prudev-coding/mzansi-poem-generator" target="_blank">
+          open-sourced on GitHub
+        </a>
+        and hosted on
+        <a href="https://mzansiverse-prudev.netlify.app/" target="_blank">
+          Netlify
+        </a>.
+      </p>
+      <p>&copy; 2026 Mzansi Poem Generator. All rights reserved.</p>
+    </footer>
+
+  </div>
+
+  <script src="src/index.js"></script>
+</body>
+
+</html>

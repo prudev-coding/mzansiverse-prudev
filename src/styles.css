@@ -91,7 +91,6 @@ select:focus {
   transform: translateY(0);
 }
 
-/* Poem box styles (match HTML ids/classes used in markup) */
 .poem-box,
 #poem-container {
   margin-top: 20px;
@@ -105,14 +104,12 @@ select:focus {
   min-height: 50px;
 }
 
-/* Ensure poem content preserves line breaks */
 #poemContent,
 .poem-box #poemContent,
 .typed-text {
   white-space: pre-wrap;
 }
 
-/* Simple blinking cursor used while typing, removed after finished */
 .typing-cursor {
   display: inline-block;
   margin-left: 6px;
@@ -124,7 +121,6 @@ select:focus {
   to { visibility: hidden; }
 }
 
-/* Copy button styling */
 .copy-btn {
   margin-left: 12px;
   padding: 10px 14px;
@@ -141,13 +137,13 @@ select:focus {
 .copy-btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
 .footer {
-  margin-top: 40px;
+  margin-top: 30px;
   padding: 20px;
   text-align: center;
   background: #272044;
   color: #ccc;
   border-radius: 12px;
-  font-size: 14px;
+  font-size: 10px;
   line-height: 2;
 }
 
